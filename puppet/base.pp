@@ -27,7 +27,7 @@ package { 'core-packages':
 #
 package { 'php5-cli':
 	ensure  => installed,
-	require => Exec['aptupdate'],
+	require => Package['core-packages'],
 }
 
 
@@ -36,7 +36,7 @@ package { 'php5-cli':
 #
 package { 'beanstalkd':
 	ensure  => installed,
-	require => Exec['aptupdate'],
+	require => Package['core-packages'],
 }
 
 file { '/etc/default/beanstalkd':
