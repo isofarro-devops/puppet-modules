@@ -12,6 +12,7 @@ exec { 'aptupdate':
 package { 'core-packages':
 	name => [
 		'wget',
+		'curl',
 		'vim',
 		'git-core',
 		'htop',
