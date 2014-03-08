@@ -19,3 +19,12 @@ package { 'core-packages':
 	ensure  => installed,
 	require => Exec['aptupdate'],
 }
+
+
+#
+# PHP5 environment
+#
+package { 'php5-cli':
+	ensure  => installed,
+	require => Exec['aptupdate'],
+}
