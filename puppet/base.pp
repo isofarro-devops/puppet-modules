@@ -25,7 +25,11 @@ package { 'core-packages':
 #
 # PHP5 environment
 #
-package { 'php5-cli':
+package { 'php5-baseline':
+	name => [
+		'php5-cli',
+		'phpunit',
+	],
 	ensure  => installed,
 	require => Package['core-packages'],
 }
