@@ -13,6 +13,9 @@ Exec {
 # Base Ubuntu packages and configuration
 include baseconfig
 
+# Nginx web server
+include nginx
+
 # PHP install - for command line use
 include php
 
