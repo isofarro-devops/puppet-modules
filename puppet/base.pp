@@ -48,6 +48,12 @@ exec { 'install-phpunit':
 	require => Package['php5-baseline'],
 }
 
+exec { 'install-composer':
+	command => '/usr/bin/curl -sS https://getcomposer.org/installer | /usr/bin/php -- --install-dir=/usr/local/bin --filename=composer',
+	user    => 'root',
+	require => Package['php5-baseline'],
+}
+
 
 #
 # Beanstalk
