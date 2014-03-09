@@ -29,7 +29,6 @@ package { 'php5-baseline':
 	name => [
 		'php5-cli',
 		'php-pear',
-		#'phpunit',
 	],
 	ensure  => installed,
 	require => Package['core-packages'],
