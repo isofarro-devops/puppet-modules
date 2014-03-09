@@ -38,6 +38,7 @@ package { 'php5-baseline':
 exec { 'update-pear':
 	command => '/usr/bin/pear upgrade PEAR',
 	user    => 'root',
+	require => Package['php5-baseline'],
 }
 
 exec { 'install-phpunit':
