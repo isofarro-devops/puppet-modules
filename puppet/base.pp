@@ -43,7 +43,8 @@ package { 'beanstalkd':
 	require => Package['core-packages'],
 }
 
-file { '/etc/default/beanstalkd':
+file { 'beanstalkd-config':
+	path    => '/etc/default/beanstalkd',
 	ensure  => present,
 	source  => 'puppet:///modules/beanstalk/beanstalkd.conf',
 	owner   => 'root',
@@ -58,6 +59,9 @@ service { 'beanstalkd':
 	enable     => true,
 	hasrestart => true,
 	hasstatus  => true,
-	require    => Package['beanstalkd'],
+	require    => [
+		Package['beanstalkd'],
+		File['beanstalkd-config'],
+	],
 }
 
