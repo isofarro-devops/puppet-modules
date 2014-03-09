@@ -1,11 +1,18 @@
 # TODO: Separate into modules.
 
+#
+# Global defaults/config
+#
+Exec {
+    path => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
+}
+
 
 #
 # Base install
 #
 exec { 'apt-update':
-	command => '/usr/bin/apt-get update',
+	command => 'apt-get update',
 	user    => 'root',
 }
 
@@ -35,35 +42,35 @@ package { 'php5-baseline':
 }
 
 exec { 'update-pear':
-	command => '/usr/bin/pear upgrade PEAR',
+	command => 'pear upgrade PEAR',
 	user    => 'root',
 	require => Package['php5-baseline'],
 }
 
 exec { 'download-phpunit':
 	creates => '/tmp/phpunit.phar',
-	command => '/usr/bin/wget -O /tmp/phpunit.phar https://phar.phpunit.de/phpunit.phar',
+	command => 'wget -O /tmp/phpunit.phar https://phar.phpunit.de/phpunit.phar',
 	require => Package['php5-baseline'],
 
 }
 
 exec { 'install-phpunit':
 	creates => '/usr/local/bin/phpunit',
-	command => '/bin/cp /tmp/phpunit.phar /usr/local/bin/phpunit && /bin/chmod +x /usr/local/bin/phpunit',
+	command => 'cp /tmp/phpunit.phar /usr/local/bin/phpunit && chmod +x /usr/local/bin/phpunit',
 	user    => 'root',
 	require => Exec['download-phpunit'],
 }
 
 exec { 'download-composer':
 	creates => '/tmp/composer.phar',
-	command => '/usr/bin/curl -sS https://getcomposer.org/installer | /usr/bin/php -- --install-dir=/tmp',
+	command => 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/tmp',
 	user    => 'root',
 	require => Package['php5-baseline'],
 }
 
 exec { 'install-composer':
 	creates => '/usr/local/bin/composer',
-	command => '/bin/cp /tmp/composer.phar /usr/local/bin/composer && /bin/chmod +x /usr/local/bin/composer',
+	command => 'cp /tmp/composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer',
 	user    => 'root',
 	require => Exec['download-composer'],
 }
