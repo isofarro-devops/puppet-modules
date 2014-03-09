@@ -13,6 +13,9 @@ Exec {
 # Base Ubuntu packages and configuration
 include baseconfig
 
+# Mysql client and server
+include mysql
+
 # Nginx web server
 include nginx
 
