@@ -7,7 +7,8 @@ class mysql {
 			'mysql-client',
 			'mysql-server'
 		],
-		ensure => installed
+		ensure => installed,
+		require => Package['core-packages'],
 	}
 
 	service { 'mysql':
