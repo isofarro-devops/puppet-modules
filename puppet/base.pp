@@ -28,12 +28,17 @@ package { 'core-packages':
 package { 'php5-baseline':
 	name => [
 		'php5-cli',
-		'phpunit',
+		'php-pear',
+		#'phpunit',
 	],
 	ensure  => installed,
 	require => Package['core-packages'],
 }
 
+exec { 'update-pear':
+	command => '/usr/bin/pear upgrade PEAR',
+	user    => 'root',
+}
 
 #
 # Beanstalk
