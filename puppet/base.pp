@@ -41,11 +41,18 @@ exec { 'update-pear':
 	require => Package['php5-baseline'],
 }
 
+exec { 'download-phpunit':
+	creates => '/tmp/phpunit.phar',
+	command => '/usr/bin/wget -O /tmp/phpunit.phar https://phar.phpunit.de/phpunit.phar',
+	require => Package['php5-baseline'],
+
+}
+
 exec { 'install-phpunit':
 	creates => '/usr/local/bin/phpunit',
-	command => '/usr/bin/wget -O /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar && chmod +x /usr/local/bin/phpunit',
+	command => '/bin/cp /tmp/phpunit.phar /usr/local/bin/phpunit && /bin/chmod +x /usr/local/bin/phpunit',
 	user    => 'root',
-	require => Package['php5-baseline'],
+	require => Exec['download-phpunit'],
 }
 
 exec { 'install-composer':
