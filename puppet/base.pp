@@ -54,10 +54,18 @@ exec { 'install-phpunit':
 	require => Exec['download-phpunit'],
 }
 
-exec { 'install-composer':
-	command => '/usr/bin/curl -sS https://getcomposer.org/installer | /usr/bin/php -- --install-dir=/usr/local/bin --filename=composer',
+exec { 'download-composer':
+	creates => '/tmp/composer.phar',
+	command => '/usr/bin/curl -sS https://getcomposer.org/installer | /usr/bin/php -- --install-dir=/tmp',
 	user    => 'root',
 	require => Package['php5-baseline'],
+}
+
+exec { 'install-composer':
+	creates => '/usr/local/bin/composer',
+	command => '/bin/cp /tmp/composer.phar /usr/local/bin/composer && /bin/chmod +x /usr/local/bin/composer',
+	user    => 'root',
+	require => Exec['download-composer'],
 }
 
 
