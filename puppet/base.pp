@@ -4,7 +4,7 @@
 #
 # Base install
 #
-exec { 'aptupdate':
+exec { 'apt-update':
 	command => '/usr/bin/apt-get update',
 	user    => 'root',
 }
@@ -18,7 +18,7 @@ package { 'core-packages':
 		'htop',
 	],
 	ensure  => installed,
-	require => Exec['aptupdate'],
+	require => Exec['apt-update'],
 }
 
 
