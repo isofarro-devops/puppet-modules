@@ -1,6 +1,7 @@
 baseBox    = 'ubuntu-12.04'
 baseBoxUrl = 'http://timhuegdon.com/vagrant-boxes/ubuntu-12.04.box'
 ipAddress  = '33.33.33.50'
+projectDir = 'PROJECT_NAME'
 
 
 Vagrant.configure('2') do |config|
@@ -16,7 +17,7 @@ Vagrant.configure('2') do |config|
         ]
     end
 
-    config.vm.synced_folder '.', '/home/vagrant/php5-beanstalk', :nfs => true
+    config.vm.synced_folder '.', '/home/vagrant/' + projectDir, :nfs => true
 
     config.vm.provision :puppet do |puppet|
         #puppet.options = '-vd'  # Verbose and Debug
