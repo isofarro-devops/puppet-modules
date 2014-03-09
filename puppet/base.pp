@@ -42,8 +42,10 @@ exec { 'update-pear':
 }
 
 exec { 'install-phpunit':
+	creates => '/usr/local/bin/phpunit',
 	command => '/usr/bin/wget -O /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar && chmod +x /usr/local/bin/phpunit',
 	user    => 'root',
+	require => Package['php5-baseline'],
 }
 
 
