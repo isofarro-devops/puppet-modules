@@ -36,6 +36,11 @@ class mysql {
 		]
 	}
 
+	exec { 'create-vagrant-user':
+		command => "mysql -uroot -prootpwd -e \"GRANT ALL PRIVILEGES ON *.* TO webdev@localhost IDENTIFIED BY 'webdev';\"",
+		path    => ['/usr/bin'],
+		require => Exec['set-mysql-password'],
+	}
 
 	service { 'mysql':
 		ensure     => running,
