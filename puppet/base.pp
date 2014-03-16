@@ -19,10 +19,10 @@ include mysql
 # Nginx web server
 include nginx
 
-# PHP install - for command line use
+# PHP install: CLI and FPM
 include php
 
-# Beanstalk message queue
+# Beanstalk message queue (optional)
 #include beanstalk
 
 
