@@ -7,7 +7,7 @@ Exec {
 
 
 #
-# Modules
+# Modules: what does your project need?
 #
 
 # Base Ubuntu packages and configuration
@@ -23,7 +23,7 @@ include nginx
 include php
 
 # Beanstalk message queue
-include beanstalk
+#include beanstalk
 
 
 
