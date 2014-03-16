@@ -7,6 +7,8 @@ class php {
 			'php5-cli',
 			'php5-fpm',
 			'php-pear',
+			'php5-sqlite',
+			'php5-mysql',
 		],
 		ensure  => installed,
 		require => Package['core-packages'],
