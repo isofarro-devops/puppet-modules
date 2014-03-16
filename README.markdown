@@ -3,6 +3,16 @@ Project skeleton
 
 A project skeleton, with starting points for Vagrant and puppet.
 
+The software platform:
+
+* Nginx
+* PHP-FPM
+* PHP5
+* MySQL
+* PHPUnit -- Unit testing
+* Composer -- for installing PHP modules
+* Beanstalk -- message queues
+
 
 
 Starting a new project:
