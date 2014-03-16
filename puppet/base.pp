@@ -25,3 +25,24 @@ include php
 # Beanstalk message queue
 include beanstalk
 
+
+
+#
+# Project specific config
+#
+
+# symlink project's nginx config
+file { 'nginx-project-available':
+	name    => '/etc/nginx/sites-available/PROJECT_NAME.dev',
+	ensure  => 'link',
+	target  => '/home/vagrant/PROJECT_NAME/etc/conf/nginx.conf',
+	require => Package['nginx'],
+}
+
+file { 'nginx-project-enabled':
+	name    => '/etc/nginx/sites-enabled/PROJECT_NAME.dev',
+	ensure  => 'link',
+	target  => '/home/vagrant/PROJECT_NAME/etc/conf/nginx.conf',
+	require => File['nginx-project-available'],
+	notify  => Service['nginx']
+}
