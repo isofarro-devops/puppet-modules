@@ -40,14 +40,14 @@ include php
 file { 'nginx-project-available':
 	name    => "/etc/nginx/sites-available/${projectDomain}",
 	ensure  => 'link',
-	target  => '${projectDir}/etc/conf/nginx.conf',
+	target  => "${projectDir}/etc/conf/nginx.conf",
 	require => Package['nginx'],
 }
 
 file { 'nginx-project-enabled':
-	name    => '/etc/nginx/sites-enabled/${projectDomain}',
+	name    => "/etc/nginx/sites-enabled/${projectDomain}",
 	ensure  => 'link',
-	target  => "${projectDir}/etc/conf/nginx.conf",
+	target  => "/etc/nginx/sites-available/${projectDomain}",
 	require => File['nginx-project-available'],
 	notify  => Service['nginx']
 }
