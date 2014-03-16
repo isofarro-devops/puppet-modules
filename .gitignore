@@ -1,0 +1,8 @@
+# Ignore editing backups
+*~
+*.swp
+
+# Ignore directories
+vendor/*
+var/log
+.vagrant/
