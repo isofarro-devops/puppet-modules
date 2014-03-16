@@ -14,6 +14,7 @@ class baseconfig {
 			'vim',
 			'git-core',
 			'htop',
+			'sqlite3',
 		],
 		ensure  => installed,
 		require => Exec['apt-update'],
