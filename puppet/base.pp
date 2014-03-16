@@ -5,6 +5,11 @@ Exec {
     path => '/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
 }
 
+# Project variables
+$projectName   = 'PROJECT_NAME'
+$projectDir    = "/home/vagrant/${projectName}"
+$projectDomain = "project_name.dev"
+
 
 #
 # Modules: what does your project need?
@@ -33,16 +38,16 @@ include php
 
 # symlink project's nginx config
 file { 'nginx-project-available':
-	name    => '/etc/nginx/sites-available/PROJECT_NAME.dev',
+	name    => "/etc/nginx/sites-available/${projectDomain}",
 	ensure  => 'link',
-	target  => '/home/vagrant/PROJECT_NAME/etc/conf/nginx.conf',
+	target  => '${projectDir}/etc/conf/nginx.conf',
 	require => Package['nginx'],
 }
 
 file { 'nginx-project-enabled':
-	name    => '/etc/nginx/sites-enabled/PROJECT_NAME.dev',
+	name    => '/etc/nginx/sites-enabled/${projectDomain}',
 	ensure  => 'link',
-	target  => '/home/vagrant/PROJECT_NAME/etc/conf/nginx.conf',
+	target  => "${projectDir}/etc/conf/nginx.conf",
 	require => File['nginx-project-available'],
 	notify  => Service['nginx']
 }
