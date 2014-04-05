@@ -30,6 +30,8 @@ include php
 # Beanstalk message queue (optional)
 #include beanstalk
 
+# MemcacheDB (document store, using BerkeleyDB)
+#include memcachedb
 
 
 #
